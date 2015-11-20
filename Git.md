@@ -43,7 +43,7 @@ Linux:`sudo apt-get install git`
 5. `git push -u origin master`  将本地仓库推送到远程库  origin这个名字可以自己更改，但是一般都按这个名字
 
 > 跟远程库进行同步的时候先要进行pull，然后再push
-> 使用 git config --global user.name[username]   和git config --global user.email[email] 修改配置
+> 使用 git config --global user.name[username]   和git config --global user.email[email] 修改配置（好像没有用，擦）
 
 
 ** GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
