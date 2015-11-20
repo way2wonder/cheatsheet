@@ -39,8 +39,12 @@ Linux:`sudo apt-get install git`
 1. 创建sshkey  `ssh-keygen -t rsa -C "youremail@example.com"`(比如我的github的帐号是772755185@qq.com)
 2. 将id_rsa.pub 中的内容粘贴到github的 add sshkey 中
 3. `git clone git@github.com:way2wonder/gitskills.git`   克隆命令
-4. `git remote add origin git@server-name:path/repo-name.git`  关联远程库
+4. `git remote add origin  git@github.com:way2wonder/cheatsheet.git`  关联远程库
 5. `git push -u origin master`  将本地仓库推送到远程库  origin这个名字可以自己更改，但是一般都按这个名字
+
+> 跟远程库进行同步的时候先要进行pull，然后再push
+
+
 
 ** GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
 使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https **
@@ -57,3 +61,5 @@ Linux:`sudo apt-get install git`
 
 **当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
 用git log --graph命令可以看到分支合并图。**
+
+
