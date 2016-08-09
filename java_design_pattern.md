@@ -118,7 +118,8 @@
 * for responsibilities that can be withdrawn（撤离）
 * when extension by subclassing is impractical.（用子类扩展不现实） Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition may be hidden or otherwise unavailable for subclassing（类定义被隐藏或者不能实现子类）
 
-
+JDK IO：
+![](./pictures/java_io.png)
 
 
 
