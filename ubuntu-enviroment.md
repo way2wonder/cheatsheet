@@ -82,3 +82,20 @@ genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -
 将`/home/zhy/shadowsocks/autoproxy.pac` 放到url中即可
 
 6. 配置vim
+  - 安装vim插件管理器`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+  - 编译youcompleteme 
+    + `sudo apt-get install build-essential cmake`
+    + `sudo apt-get install python-dev python3-dev`
+    + `cd ~/.vim/bundle/YouCompleteMe`
+    + `./install.py`
+
+7. 安装powerline fonts
+`git@github.com:powerline/fonts.git`
+
+
+8. 安装zsh && on-my-zsh 
+   + `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+   + 主题使用`agnoster`
+
+9. 安装 oracle_jdk
+
