@@ -77,7 +77,7 @@ esac
 
 5. 设置pac代理
 
-``bash
+```bash
 sudo pip install genpac
 mkdir shadowsocks
 cd shadowsocks
@@ -87,7 +87,6 @@ genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -
 将`/home/zhy/shadowsocks/autoproxy.pac` 放到url中即可
 
 6. 配置vim
-
     - 安装vim插件管理器`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
     - 编译youcompleteme 
        + `sudo apt-get install build-essential cmake`
