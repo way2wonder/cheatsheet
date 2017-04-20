@@ -1,7 +1,8 @@
 ##
 1. 安装shadowsocks
+
 ```bash
-wget https://bootstrap.pypa.io/get-pip.py`
+wget https://bootstrap.pypa.io/get-pip.py
 sudo python get-pip.py
 sudo pip install shadowsocks
 ```
@@ -13,7 +14,9 @@ sudo pip install shadowsocks
 `sudo apt install google-chrome-stable`
 
 3. 开启ssh
+
 `sudo apt-get install openssh-server`
+
 ```bash
 sudo vi /etc/ssh/sshd_config
 找到：PermitRootLogin prohibit-password禁用
@@ -22,6 +25,7 @@ sudo service ssh restart
 ```
 
 4. 配置shadowsocks
+
 ```json
 {
         "server":"45.63.37.15",
@@ -73,21 +77,23 @@ esac
 ```
 
 5. 设置pac代理
+
 ``bash
 sudo pip install genpac
 mkdir shadowsocks
 cd shadowsocks
 genpac --proxy="SOCKS5 127.0.0.1:1080" --gfwlist-proxy="SOCKS5 127.0.0.1:1080" -o autoproxy.pac --gfwlist-url="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt"
 ```
+
 将`/home/zhy/shadowsocks/autoproxy.pac` 放到url中即可
 
 6. 配置vim
-  - 安装vim插件管理器`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-  - 编译youcompleteme 
-    + `sudo apt-get install build-essential cmake`
-    + `sudo apt-get install python-dev python3-dev`
-    + `cd ~/.vim/bundle/YouCompleteMe`
-    + `./install.py`
+    - 安装vim插件管理器`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+    - 编译youcompleteme 
+       + `sudo apt-get install build-essential cmake`
+       + `sudo apt-get install python-dev python3-dev`
+       + `cd ~/.vim/bundle/YouCompleteMe`
+       + `./install.py`
 
 7. 安装powerline fonts
 `git@github.com:powerline/fonts.git`
