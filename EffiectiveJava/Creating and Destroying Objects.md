@@ -88,6 +88,95 @@ parameters
 ### Enforce the singleton property with a private constructor or an enum type. 强制单例的属性拥一个私有的构造方法或者是个枚举类型
 
 1. Making a class a singleton can make it difficult to test its clients 单例模式使得测试他的客户端变难了
-2. 
 
-## 服务提供者框架
+私有构造方法一般能保证只有自己可以调用,除了客户端有权限通过` 反射`来调用内部类
+3种方法来生成单例
+1. `public final static XXX`
+2. 将方法一的public设成`private`,然后通过静态工厂方法返回(支持泛型)
+3.  Simply make an enum type
+   >```java
+   > // Enum singleton - the preferred approach
+public enum Elvis {
+INSTANCE;
+public void leaveTheBuilding() { ... }
+}```
+
+**`a single-element enum type is the best way to implement a singleton`**
+
+**如何用Enum 生成一个单例模式 ?**
+
+
+### Item 4: Enforce noninstantiability with a private constructor 通过私有构造方法确保不能实例化
+只提供静态方法和静态域的类他们有以下作用
+1. group related methods on primitive values or arrays  `Math  Arrays`
+2. group static methods, including factory methods (Item 1), `Collections`
+3. group methods on a final class, instead of extending the class'
+
+
+### Item 5: Avoid creating unnecessary objects  (与之对应的是Item39 counterpoint)
+1. `String s="aaa"` better than `String s=new String("aaa")`
+2. 优于构造方法,通过静态工厂方法创建实例   `Boolean.valueOf(String)` 好于`new Boolean(String)`
+3.  you can also reuse mutable objects if you know they won’t be modified
+    + before
+    >```java
+    public class Person {
+    private final Date birthDate;
+    // Other fields, methods, and constructor omitted
+    // DON'T DO THIS!
+    public boolean isBabyBoomer() {
+    // Unnecessary allocation of expensive object
+    Calendar gmtCal =
+    Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+    gmtCal.set(1946, Calendar.JANUARY, 1, 0, 0, 0);
+    Date boomStart = gmtCal.getTime();
+    gmtCal.set(1965, Calendar.JANUARY, 1, 0, 0, 0);
+    Date boomEnd = gmtCal.getTime();
+    return birthDate.compareTo(boomStart) >= 0 &&
+    birthDate.compareTo(boomEnd) < 0;
+    }
+    }
+     ```
+    + after
+
+     >```java
+     public class Person {
+     private final Date birthDate;
+     // Other fields, methods, and constructor omitted
+     /**
+     * The starting and ending dates of the baby boom.
+     */
+     private static final Date BOOM_START;
+     private static final Date BOOM_END;
+     static {
+     Calendar gmtCal =
+     Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+     gmtCal.set(1946, Calendar.JANUARY, 1, 0, 0, 0);
+     BOOM_START = gmtCal.getTime();
+     gmtCal.set(1965, Calendar.JANUARY, 1, 0, 0, 0);
+     BOOM_END = gmtCal.getTime();
+     }
+     public boolean isBabyBoomer() {
+     return birthDate.compareTo(BOOM_START) >= 0 &&
+     birthDate.compareTo(BOOM_END) < 0;
+     }
+     }
+    ```
+
+4. Consider the case of adapters [Gamma95,p. 139], also known as views. An adapter is an object that delegates to a backing object, `Map.keySet()`
+
+`transient volatile`**
+
+5. **prefer primitives to boxed primitives, and watch out for unintentional autoboxing.**  优先使用原生类型,优于自动装箱的原生类.
+  例子:  所有int相加的例子
+  但这并`不`能说明object creation is  expensive and should be avoided.
+  通过维护自己的对象池来避免创建新的对象是个不好的想法,除非这个对象非常的繁重`extremely heavyweight`
+
+
+### Item 6: Eliminate obsolete object references  (淘汰过时的对象引用)
+方法: null out references once they become obsolete.
+**whenever a class manages its own memory, the programmer should be alert for memory leaks. **
+**Another common source of memory leaks is caches.**  另一个常见的内存泄漏就是缓存
+A third common source of memory leaks is listeners and other callbacks.    监听器和回调函数
+   + 确保回调立即被当做垃圾回收的最佳方法是只保存它们的弱引用（weak reference），例如，只将它们保存成WeakHashMap中的键。 ???
+
+Item 7: Avoid finalizers   (什么是终结方法?? )
